@@ -1,0 +1,107 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*General*/
+html,body #fullheight{
+    min-height: 100vh !important;
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+}
+
+.container{
+    display: grid;
+    grid-template-rows: 40% 60%;
+    height: 100vh;
+    background-color: black;
+    padding: 2px;
+    border: 2px   solid  white;
+    border-radius: 10px;
+}
+
+/*Result*/
+.result{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    color: white;
+    height: 95%;
+}
+
+.result span{
+    margin-right: 20px;
+    font-size: 100px;
+    justify-self: flex-end;
+}
+
+/*Buttons*/
+.buttons{
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    justify-content: end;
+}
+
+.item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: white;
+    border-radius: 50%;
+    width: 92%;
+    height: 92%;
+    padding: 10px;
+    cursor: pointer;
+    user-select: none;
+    align-self: center;
+    justify-self: center;
+}
+
+.percent{
+    background-color: #a5a5a5;
+    border: none;
+    color: black;
+}
+
+.item1{
+    background-color: #a5a5a5;
+    border: none;
+}
+
+.item3{
+    background-color: #ff9f0a;
+    border: none;
+}
+
+.number, .comma{
+    background-color: #343434;
+    border: none;
+}
+
+.negative, .clear{
+    color: black;
+}
+
+.itemZero{
+    background-color: #343434;
+    width: 90%;
+    border-radius: 135px;
+    grid-column: span 2;
+    border: none;
+}
+
+
+/**/
+@media screen and (min-width: 450px) {
+    .container {
+      width: 450px;
+      margin: 0 auto;
+      
+    }
+  }
