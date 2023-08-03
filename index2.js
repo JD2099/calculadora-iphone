@@ -8,7 +8,7 @@ const change = document.getElementById('change');
 
 
 let valorActual = '0';
-let valorAnterior = '0';
+let valorAnterior = '';
 let tipoOperador ='';
 let solucion = '';
 let calculadora = new Calculator();
@@ -16,10 +16,7 @@ let calculadora = new Calculator();
 //Funciones
 
 function agregarNumero(num) {
-    if (tipoOperador !== '') {
-        pantalla.textContent = num;
-        valorActual = num;
-    } else if(pantalla.textContent === '0'){
+     if(pantalla.textContent === '0'){
         if (pantalla.textContent === '0' && num === '.') {
             pantalla.textContent = '0.'
             valorActual = '0.'
@@ -28,13 +25,13 @@ function agregarNumero(num) {
         valorActual = num;
         mostrar();
         }   
-    }
-    else if(pantalla.textContent === '0.' && num === '.'){
+    }else if(pantalla.textContent === '0.' && num === '.'){
         return;
         
-    }else{
-        valorActual = num;
+    }else {
+        valorActual = num ;
         mostrar();
+        valorActual = pantalla.textContent;
     }
 }
 
@@ -42,7 +39,7 @@ function almacenaResuelve(op){
         valorAnterior = parseFloat(valorActual);
         tipoOperador = op;
         valorActual = '';
-
+        pantalla.textContent = '0'
     }
 
 function resolver(){
