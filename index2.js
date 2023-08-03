@@ -8,63 +8,71 @@ const change = document.getElementById('change');
 
 
 let valorActual = '0';
-let valorAnterior = '';
+let valorAnterior = '0';
 let tipoOperador ='';
-let esperandoNumero = false;
-let esperandoOperador = false;
-let solucion = '';
+let estadoNumero = false;
+let estadoOperador = false;
+let solucion = '0';
 let calculadora = new Calculator();
 
 //Funciones
 
 function agregarNumero(num) {
-     if(pantalla.textContent === '0'){
-        if (pantalla.textContent === '0' && num === '.') {
-            pantalla.textContent = '0.'
-            valorActual = '0.'
-        }else{
+    if (pantalla.textContent === '0' && num === '.') {
+        pantalla.textContent = ''
+        valorActual = '0.'
+        mostrar();
+    }else if(pantalla.textContent === '0' && num !== '.'){
+        pantalla.textContent = ''
+        valorActual=num;
+        mostrar();
+    }else if(pantalla.textContent === '0.' && num === '.'){
+        pantalla.textContent = ''
+        valorActual = '0.'
+        mostrar();
+    }else if(pantalla.textContent === '0.' && num !== '.'){
+        valorActual = num;
+        mostrar();
+    }else if(valorActual.includes('.') && num === '.'){
+        pantalla.textContent = ''
+        mostrar();
+    }else if(estadoOperador === true ){
         pantalla.textContent = ''
         valorActual = num;
         mostrar();
-        }   
-    }else if(pantalla.textContent === '0.' && num === '.'){
-        return;
-        
-    }else {
-        valorActual = num ;
+    }else{
+        valorActual = num;
         mostrar();
-        valorActual = pantalla.textContent;
     }
 
+    estadoNumero = true;
     
 }
 
 function almacenaResuelve(op){
     valorAnterior = parseFloat(valorActual);
     tipoOperador = op;
-    if (esperandoOperador === true) {
-        resolver();
-    } else {
-        esperandoOperador = true;    
-        pantalla.textContent = '0' 
-    }  
-    valorActual = ''; 
+    estadoOperador = true;  
+    valorActual = '';
           
     }
 
 function resolver(){
-    
     solucion = calculadora[tipoOperador](parseFloat(valorAnterior), parseFloat(valorActual))
-    pantalla.textContent = solucion.toString();
+    pantalla.textContent = '';
     valorActual = solucion.toString();
+    mostrar();    
     valorAnterior = ''
     tipoOperador = ''
-    esperandoOperador = false;
+    solucion = '0'
+    estadoOperador = false;
+
 }
 
 
 function mostrar(){
     pantalla.textContent = pantalla.textContent + valorActual;
+    valorActual = pantalla.textContent;
 }
 
 
@@ -74,22 +82,23 @@ function ac(){
     valorActual = '0';
     valorAnterior = '0';
     tipoOperador = '';
-    solucion = '';
-    esperandoNumero = false;
-    esperandoOperador= false;
+    solucion = '0';
+    estadoNumero = false;
+    estadoOperador= false;
     mostrar();
 }
 
 function aplicarPercent(){
-    const operacionPorcentaje = parseFloat(pantalla.textContent)*0.01;
-    pantalla.textContent = operacionPorcentaje.toString();
-    valorActual = operacionPorcentaje.toString();
-    
+    valorActual = valorActual*0.01;
+    pantalla.textContent = '';
+    mostrar();
+
 }
 
 function aplicarChange(){
-    pantalla.textContent = -pantalla.textContent;
-    valorActual = pantalla.textContent.toString();
+    valorActual = -pantalla.textContent
+    pantalla.textContent = ''
+    mostrar();
 }
 
 //Eventos
