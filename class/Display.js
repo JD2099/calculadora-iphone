@@ -1,5 +1,5 @@
 class Display{
-    constructor(result, ){
+    constructor(result ){
         this.result = result;
         this.preResult = '';
         this.calculator = new Calculator();
@@ -8,15 +8,23 @@ class Display{
         this.operadorType = undefined;
     }
 
+    
+
     addNumber(num){
-        if (num === ',' && this.actValue.includes(',')) {
+        if (num === '.' && this.actValue.includes('.')) {
             this.actValue = this.actValue.toString();
             this.show();
-        }else{
+        }else if(num === '0' && this.actValue ===''){
+            this.actValue = this.actValue.toString();
+            this.show();
+        }else if(this.actValue ==='0'){
+            this.actValue = '';
+            this.show();
+        }
+        else{
             this.actValue = this.actValue.toString() + num.toString();
             this.show();
         }
-
     }
 
     calculate(){
@@ -36,6 +44,8 @@ class Display{
     }
 
     clear(){
+        this.result = result;
+        this.preResult = '';
         this.actValue = '';
         this.preValue = '';
         this.operadorType = undefined;
@@ -43,11 +53,24 @@ class Display{
     }
 
     change(){
-        this.actValue=-this.actValue;
+        
+        this.actValue=-this.actValue.toString();
         this.show();
     }
 
+    percent(){
+        if (this.actValue == '') {
+            this.actValue = (this.preValue*0.01).toString();
+            this.show(); 
+        }else{
+        this.actValue = (this.actValue*0.01).toString();
+        this.show(); 
+        }
+        
+    }
+
     show(){
+        
         this.result.textContent = this.actValue;
         this.preResult = this.preValue;
         console.log(this.preValue);
