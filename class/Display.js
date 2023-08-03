@@ -42,6 +42,11 @@ class Display{
         this.show();
     }
 
+    change(){
+        this.actValue=-this.actValue;
+        this.show();
+    }
+
     show(){
         this.result.textContent = this.actValue;
         this.preResult = this.preValue;
