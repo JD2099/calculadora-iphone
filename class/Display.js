@@ -17,6 +17,9 @@ class Display{
         }else if(num === '0' && this.actValue ===''){
             this.actValue = this.actValue.toString();
             this.show();
+        }else if(num === '0' && this.actValue ===''){
+            this.actValue = this.actValue.toString();
+            this.show();
         }else if(this.actValue ==='0'){
             this.actValue = '';
             this.show();
