@@ -10,6 +10,8 @@ const change = document.getElementById('change');
 let valorActual = '0';
 let valorAnterior = '';
 let tipoOperador ='';
+let esperandoNumero = false;
+let esperandoOperador = false;
 let solucion = '';
 let calculadora = new Calculator();
 
@@ -33,13 +35,21 @@ function agregarNumero(num) {
         mostrar();
         valorActual = pantalla.textContent;
     }
+
+    
 }
 
 function almacenaResuelve(op){
-        valorAnterior = parseFloat(valorActual);
-        tipoOperador = op;
-        valorActual = '';
-        pantalla.textContent = '0'
+    valorAnterior = parseFloat(valorActual);
+    tipoOperador = op;
+    if (esperandoOperador === true) {
+        resolver();
+    } else {
+        esperandoOperador = true;    
+        pantalla.textContent = '0' 
+    }  
+    valorActual = ''; 
+          
     }
 
 function resolver(){
@@ -49,7 +59,7 @@ function resolver(){
     valorActual = solucion.toString();
     valorAnterior = ''
     tipoOperador = ''
-    
+    esperandoOperador = false;
 }
 
 
@@ -65,6 +75,8 @@ function ac(){
     valorAnterior = '0';
     tipoOperador = '';
     solucion = '';
+    esperandoNumero = false;
+    esperandoOperador= false;
     mostrar();
 }
 
