@@ -5,9 +5,7 @@ const btnClear = document.getElementById("clear")
 
 const display = new Display(result);
 
-if(result.textContent.length > 7){
-    result.textContent = eval(result.textContent).toFixed(7);
-}
+
 
 
 btnNumbers.forEach(btn => {

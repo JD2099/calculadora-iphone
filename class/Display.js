@@ -59,8 +59,11 @@ class Display{
     }
 
     percent(){
-        if (this.actValue == '') {
-            this.actValue = (this.preValue*0.01).toString();
+        if(this.actValue == '') {
+            this.actValue = (this.preResult*0.01).toString();
+            this.show(); 
+        }else if(this.actValue == this.preResult) {
+            this.actValue = (this.actValue*0.01).toString();
             this.show(); 
         }else{
         this.actValue = (this.actValue*0.01).toString();
