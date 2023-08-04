@@ -14,6 +14,7 @@ let estadoNumero = false;
 let estadoOperador = false;
 let solucion = '0';
 let calculadora = new Calculator();
+let estadoComa = false;
 
 //Funciones
 
@@ -36,17 +37,18 @@ function agregarNumero(num) {
     }else if(valorActual.includes('.') && num === '.'){
         pantalla.textContent = ''
         mostrar();
-    }else if(estadoOperador === true ){
+    }else if(estadoOperador === true && estadoComa===false){
         pantalla.textContent = ''
         valorActual = num;
         mostrar();
+        estadoComa = true;
     }else{
         valorActual = num;
         mostrar();
+        estadoComa = false;
     }
 
     estadoNumero = true;
-    
 }
 
 function almacenaResuelve(op){
@@ -85,6 +87,7 @@ function ac(){
     solucion = '0';
     estadoNumero = false;
     estadoOperador= false;
+    estadoComa = false;
     mostrar();
 }
 
