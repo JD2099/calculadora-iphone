@@ -11,6 +11,8 @@ let valorActual = '0';
 let valorAnterior = '0';
 let tipoOperador ='';
 let estadoOperador = false;
+let estadoAlmacenado = false;
+let esOpDoble = false;
 let solucion = '0';
 let calculadora = new Calculator();
 
@@ -46,27 +48,49 @@ function agregarNumero(num) {
         }
     }
     estadoOperador = false;
+    esOpDoble = false;
     
 }
 
 function almacenaResuelve(op){
-    valorAnterior = parseFloat(valorActual);
-    tipoOperador = op;
-    estadoOperador = true; 
-    valorActual = '';
-          
+    if (esOpDoble === true) {
+        valorAnterior = parseFloat(pantalla.textContent);
+        tipoOperador = op
+        return;
+    } else {
+        if (estadoAlmacenado === true && esOpDoble === false) {
+            resolver();
+        }
+    }
+    
+        valorAnterior = parseFloat(valorActual);
+        tipoOperador = op;
+        valorActual = '';
+        estadoOperador = true; 
+        estadoAlmacenado = true;
+        esOpDoble = true;
+        console.log(valorActual)
+        console.log(valorAnterior)
+    
     }
 
 function resolver(){
-    solucion = calculadora[tipoOperador](parseFloat(valorAnterior), parseFloat(valorActual))
-    pantalla.textContent = '';
-    valorActual = solucion.toString();
-    mostrar();    
-    valorAnterior = ''
-    tipoOperador = ''
-    solucion = '0'
-    estadoOperador = false;
+    if (valorActual === '') {
+        return;
+    } else {
+        solucion = calculadora[tipoOperador](parseFloat(valorAnterior), parseFloat(valorActual))
+        pantalla.textContent = '';
+        valorActual = solucion.toString();
+        mostrar();    
+        valorAnterior = ''
+        tipoOperador = ''
+        solucion = '0'
+        estadoOperador = false;
+        estadoAlmacenado = false;
+        esOpDoble = false;
+    }
 
+    
 }
 
 
@@ -84,6 +108,8 @@ function ac(){
     tipoOperador = '';
     solucion = '0';
     estadoOperador= false;
+    estadoAlmacenado = false;
+    esOpDoble = false;
     mostrar();
 }
 
