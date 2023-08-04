@@ -10,51 +10,49 @@ const change = document.getElementById('change');
 let valorActual = '0';
 let valorAnterior = '0';
 let tipoOperador ='';
-let estadoNumero = false;
 let estadoOperador = false;
 let solucion = '0';
 let calculadora = new Calculator();
-let estadoComa = false;
 
 //Funciones
 
 function agregarNumero(num) {
-    if (pantalla.textContent === '0' && num === '.') {
-        pantalla.textContent = ''
-        valorActual = '0.'
-        mostrar();
-    }else if(pantalla.textContent === '0' && num !== '.'){
-        pantalla.textContent = ''
-        valorActual=num;
-        mostrar();
-    }else if(pantalla.textContent === '0.' && num === '.'){
-        pantalla.textContent = ''
-        valorActual = '0.'
-        mostrar();
-    }else if(pantalla.textContent === '0.' && num !== '.'){
-        valorActual = num;
-        mostrar();
-    }else if(valorActual.includes('.') && num === '.'){
-        pantalla.textContent = ''
-        mostrar();
-    }else if(estadoOperador === true && estadoComa===false){
+    if(estadoOperador===true && pantalla.textContent !== '0'){
         pantalla.textContent = ''
         valorActual = num;
         mostrar();
-        estadoComa = true;
     }else{
-        valorActual = num;
-        mostrar();
-        estadoComa = false;
+            if (pantalla.textContent === '0' && num === '.') {
+            pantalla.textContent = ''
+            valorActual = '0.'
+            mostrar();
+        }else if(pantalla.textContent === '0' && num !== '.'){
+            pantalla.textContent = ''
+            valorActual=num;
+            mostrar();
+        }else if(pantalla.textContent === '0.' && num === '.'){
+            pantalla.textContent = ''
+            valorActual = '0.'
+            mostrar();
+        }else if(pantalla.textContent === '0.' && num !== '.'){
+            valorActual = num;
+            mostrar();
+        }else if(valorActual.includes('.') && num === '.'){
+            pantalla.textContent = ''
+            mostrar();
+        }else{
+            valorActual = num;
+            mostrar();
+        }
     }
-
-    estadoNumero = true;
+    estadoOperador = false;
+    
 }
 
 function almacenaResuelve(op){
     valorAnterior = parseFloat(valorActual);
     tipoOperador = op;
-    estadoOperador = true;  
+    estadoOperador = true; 
     valorActual = '';
           
     }
@@ -85,9 +83,7 @@ function ac(){
     valorAnterior = '0';
     tipoOperador = '';
     solucion = '0';
-    estadoNumero = false;
     estadoOperador= false;
-    estadoComa = false;
     mostrar();
 }
 
