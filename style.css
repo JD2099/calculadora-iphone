@@ -31,7 +31,7 @@ html,body #fullheight{
     align-items: flex-end;
     color: white;
     height: 95%;
-    overflow: hidden;
+    overflow: scroll;
 }
 
 .result span{
@@ -46,7 +46,7 @@ html,body #fullheight{
     width: 100%;
     background-color: black;
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: repeat(4, 25%);
     justify-content: end;
 }
 
@@ -129,7 +129,7 @@ html,body #fullheight{
     /*Buttons*/
 
     .buttons{
-        grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10% ;
+        grid-template-columns: repeat(10, 10%) ;
         padding: 0 3%;
     }
     .item{

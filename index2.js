@@ -72,7 +72,7 @@ function resolver(){
 
 function mostrar(){
     pantalla.textContent = pantalla.textContent + valorActual;
-    valorActual = pantalla.textContent;
+    valorActual = pantalla.textContent; 
 }
 
 
