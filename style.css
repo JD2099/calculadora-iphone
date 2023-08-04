@@ -23,7 +23,6 @@ html,body #fullheight{
 }
 
 
-
 /*Display*/
 .result{
     display: flex;
@@ -31,7 +30,12 @@ html,body #fullheight{
     align-items: flex-end;
     color: white;
     height: 95%;
-    overflow: scroll;
+    width: 100%;
+    overflow: hidden;
+}
+
+#divPantalla{
+    position: absolute;
 }
 
 .result span{
