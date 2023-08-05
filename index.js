@@ -23,7 +23,8 @@ let calculadora = new Calculator();
 //Desplazar resultado de pantalla
 let posX;
 const move = (e) =>{
-    divPantalla.style.left = `${e.clientX - posX}px`
+    const x = e.touches ? e.touches[0].clientX : e.clientX;
+    divPantalla.style.left = `${x - posX}px`;
 }
 
 divPantalla.addEventListener('mousedown', (e)=>{
@@ -38,11 +39,15 @@ document.addEventListener('mouseup',()=>{
     document.removeEventListener('mousemove', move)
 })
 
-divPantalla.addEventListener('touchmove',(e)=>{
+divPantalla.addEventListener('touchstart',(e)=>{
     if (pantalla.textContent.length>8 ) {
-        posX = e.clientX - divPantalla.offsetLeft;
-        alert('prueba')
+        posX = e.touches[0].clientX - divPantalla.offsetLeft;
+        document.addEventListener('touchmove',move)
     }
+})
+
+document.addEventListener('touchend', ()=>{
+    document.removeEventListener('touchmove', move);
 })
 
 
