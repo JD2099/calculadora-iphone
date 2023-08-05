@@ -38,6 +38,14 @@ document.addEventListener('mouseup',()=>{
     document.removeEventListener('mousemove', move)
 })
 
+divPantalla.addEventListener('touchmove',(e)=>{
+    if (pantalla.textContent.length>8 ) {
+        posX = e.clientX - divPantalla.offsetLeft;
+        alert('prueba')
+    }
+})
+
+
 
 //Mostrar resultado
 function mostrar(){
