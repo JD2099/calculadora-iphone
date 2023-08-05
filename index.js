@@ -42,7 +42,7 @@ document.addEventListener('mouseup',()=>{
 divPantalla.addEventListener('touchstart',(e)=>{
     if (pantalla.textContent.length>8 ) {
         posX = e.touches[0].clientX - divPantalla.offsetLeft;
-        document.addEventListener('touchmove',move)
+        divPantalla.addEventListener('touchmove',move)
     }
 })
 
